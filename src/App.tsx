@@ -1,12 +1,14 @@
 import { BASE_URL } from "./utils";
 import { useState, useEffect } from "react";
-import { Datas, Loading } from "./utils";
+import { Datas, Loading, CartOpen } from "./utils";
 import ProductsList from "./components/ProductsList";
 import { Box, Typography } from "@mui/material";
+import TopArea from "./components/TopArea";
 
 const App = () => {
-  const [data, setData] = useState<Datas>([]);
+  const [data, setData] = useState<Datas[]>([]);
   const [loading, setLoading] = useState<Loading>(false);
+  const [cartOpen, setCartOpen] = useState<CartOpen>(false);
   useEffect(() => {
     const apiFunc = async () => {
       try {
@@ -21,19 +23,22 @@ const App = () => {
     };
     apiFunc();
   }, []);
+
   return (
     <>
-      <Box sx={{ textAlign: "center", padding: "30px 0" }}>
-        <Typography variant="h1" style={{ fontSize: "30px" }}>
-          React with TypeScript
-        </Typography>
+      <Box sx={{ marginBottom: "50px" }}>
+        <TopArea setCartOpen={setCartOpen} />
       </Box>
       {loading && loading ? (
         <Box sx={{ textAlign: "center" }}>
           <Typography variant="h6">Loading. . .</Typography>
         </Box>
       ) : (
-        <ProductsList data={data} />
+        <ProductsList
+          data={data}
+          cartOpen={cartOpen}
+          setCartOpen={setCartOpen}
+        />
       )}
     </>
   );

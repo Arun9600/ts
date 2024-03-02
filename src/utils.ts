@@ -4,7 +4,9 @@ export type Datas = {
   id: number;
   title: string;
   image: string;
-}[];
+  quantity?: number;
+  price?: string;
+};
 
 export type IDNum = number | null;
 
@@ -16,3 +18,5 @@ export type ProductDatas = {
 };
 
 export type Loading = boolean;
+
+export type CartOpen = boolean;

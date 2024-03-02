@@ -43,24 +43,24 @@ const ProductDetails = ({ productsID }: { productsID: IDNum }) => {
               container
               sx={{ alignItems: "center", justifyContent: "center" }}
             >
-              <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
+              <Grid item xl={4} lg={4} md={4} sm={4} xs={4}>
                 <img
                   src={productsDetail?.image}
                   alt={productsDetail?.title}
-                  width={80}
-                  height={80}
+                  width={130}
+                  height={130}
                 />
               </Grid>
-              <Grid item xl={9} lg={9} md={9} sm={9} xs={9}>
+              <Grid item xl={8} lg={8} md={8} sm={8} xs={8}>
                 <Typography
                   variant="h5"
-                  style={{ fontSize: "16px", fontWeight: "bold" }}
+                  style={{ fontSize: "15px", fontWeight: "bold" }}
                 >
                   {productsDetail?.title}
                 </Typography>
                 <Typography
                   variant="h6"
-                  style={{ fontSize: "16px", fontWeight: "bold" }}
+                  style={{ fontSize: "14px", fontWeight: "bold" }}
                 >
                   Rs. {productsDetail?.price}
                 </Typography>
