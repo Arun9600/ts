@@ -42,6 +42,24 @@ const ProductsList = ({
     }
   };
 
+  const qtyIncrease = (datas: Datas) => {
+    const increase = cart.map((item) =>
+      item.id === datas.id
+        ? { ...item, quantity: (item.quantity || 0) + 1 }
+        : item
+    );
+    setCart(increase);
+  };
+
+  const qtyDecrease = (datas: Datas) => {
+    const decrease = cart.map((item) =>
+      item.id === datas.id && (datas.quantity || 0) > 1
+        ? { ...item, quantity: (item.quantity || 0) - 1 }
+        : item
+    );
+    setCart(decrease);
+  };
+
   return (
     <>
       <Box>
@@ -105,7 +123,14 @@ const ProductsList = ({
       >
         <ProductDetails productsID={productsID} />
       </Drawer>
-      <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} cart={cart} />
+      <Cart
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+        cart={cart}
+        qtyIncrease={qtyIncrease}
+        qtyDecrease={qtyDecrease}
+        setCart={setCart}
+      />
     </>
   );
 };

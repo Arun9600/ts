@@ -5,7 +5,7 @@ export type Datas = {
   title: string;
   image: string;
   quantity?: number;
-  price?: string;
+  price?: string | number;
 };
 
 export type IDNum = number | null;
