@@ -4,11 +4,14 @@ import { Datas, Loading, CartOpen } from "./utils";
 import ProductsList from "./components/ProductsList";
 import { Box, Typography } from "@mui/material";
 import TopArea from "./components/TopArea";
+import { createContext } from "react";
 
+const ProductData = createContext<Datas[] | null>(null);
 const App = () => {
   const [data, setData] = useState<Datas[]>([]);
   const [loading, setLoading] = useState<Loading>(true);
   const [cartOpen, setCartOpen] = useState<CartOpen>(false);
+
   useEffect(() => {
     const apiFunc = async () => {
       try {
@@ -34,14 +37,14 @@ const App = () => {
           <Typography variant="h6">Loading. . .</Typography>
         </Box>
       ) : (
-        <ProductsList
-          data={data}
-          cartOpen={cartOpen}
-          setCartOpen={setCartOpen}
-        />
+        <ProductData.Provider value={data}>
+          <ProductsList cartOpen={cartOpen} setCartOpen={setCartOpen} />
+        </ProductData.Provider>
       )}
     </>
   );
 };
 
 export default App;
+
+export { ProductData };

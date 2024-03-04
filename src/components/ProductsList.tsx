@@ -7,20 +7,21 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { CartOpen, Datas, IDNum, Loading } from "../utils";
+import { CartOpen, Datas, IDNum } from "../utils";
 import { useState } from "react";
 import ProductDetails from "./ProductsDetails";
 import { Dispatch, SetStateAction } from "react";
 import Cart from "./Cart";
+import { useContext } from "react";
+import { ProductData } from "../App";
 const ProductsList = ({
-  data,
   cartOpen,
   setCartOpen,
 }: {
-  data: Datas[];
   cartOpen: CartOpen;
   setCartOpen: Dispatch<SetStateAction<CartOpen>>;
 }) => {
+  const data = useContext(ProductData);
   const [productsID, setProductsId] = useState<IDNum>(null);
   const [sidebarOpen, setSideBarOpen] = useState<boolean>(false);
   const [cart, setCart] = useState<Datas[]>([]);
@@ -65,54 +66,55 @@ const ProductsList = ({
       <Box>
         <Container>
           <Grid container>
-            {data.map((datas) => (
-              <Grid
-                item
-                xl={4}
-                lg={4}
-                md={6}
-                sm={6}
-                xs={12}
-                key={datas.id}
-                style={{ marginBottom: "50px", textAlign: "center" }}
-              >
-                <img
-                  src={datas.image}
-                  alt={datas.title}
-                  width={250}
-                  height={250}
-                  style={{ marginBottom: "15px" }}
-                />
+            {data &&
+              data.map((datas) => (
+                <Grid
+                  item
+                  xl={4}
+                  lg={4}
+                  md={6}
+                  sm={6}
+                  xs={12}
+                  key={datas.id}
+                  style={{ marginBottom: "50px", textAlign: "center" }}
+                >
+                  <img
+                    src={datas.image}
+                    alt={datas.title}
+                    width={250}
+                    height={250}
+                    style={{ marginBottom: "15px" }}
+                  />
 
-                <Box sx={{ marginBottom: "20px" }}>{datas.title}</Box>
-                <Grid container>
-                  <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
-                    <Button
-                      color="success"
-                      variant="outlined"
-                      onClick={() => {
-                        setProductsId(datas.id);
-                        setSideBarOpen(true);
-                      }}
-                    >
-                      View Product
-                    </Button>
-                  </Grid>
-                  <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
-                    <Button
-                      color="success"
-                      variant="outlined"
-                      onClick={() => {
-                        addToCart(datas);
-                        setCartOpen(true);
-                      }}
-                    >
-                      Add to Cart
-                    </Button>
+                  <Box sx={{ marginBottom: "20px" }}>{datas.title}</Box>
+                  <Grid container>
+                    <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
+                      <Button
+                        color="success"
+                        variant="outlined"
+                        onClick={() => {
+                          setProductsId(datas.id);
+                          setSideBarOpen(true);
+                        }}
+                      >
+                        View Product
+                      </Button>
+                    </Grid>
+                    <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
+                      <Button
+                        color="success"
+                        variant="outlined"
+                        onClick={() => {
+                          addToCart(datas);
+                          setCartOpen(true);
+                        }}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            ))}
+              ))}
           </Grid>
         </Container>
       </Box>
