@@ -7,12 +7,11 @@ import TopArea from "./components/TopArea";
 
 const App = () => {
   const [data, setData] = useState<Datas[]>([]);
-  const [loading, setLoading] = useState<Loading>(false);
+  const [loading, setLoading] = useState<Loading>(true);
   const [cartOpen, setCartOpen] = useState<CartOpen>(false);
   useEffect(() => {
     const apiFunc = async () => {
       try {
-        setLoading(true);
         const apiURL = await fetch(`${BASE_URL}/products`);
         const response = await apiURL.json();
         setData(response);
@@ -39,7 +38,6 @@ const App = () => {
           data={data}
           cartOpen={cartOpen}
           setCartOpen={setCartOpen}
-          loading={loading}
         />
       )}
     </>

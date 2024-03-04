@@ -6,7 +6,6 @@ import {
   Drawer,
   useTheme,
   useMediaQuery,
-  Skeleton,
 } from "@mui/material";
 import { CartOpen, Datas, IDNum, Loading } from "../utils";
 import { useState } from "react";
@@ -14,12 +13,10 @@ import ProductDetails from "./ProductsDetails";
 import { Dispatch, SetStateAction } from "react";
 import Cart from "./Cart";
 const ProductsList = ({
-  loading,
   data,
   cartOpen,
   setCartOpen,
 }: {
-  loading: Loading;
   data: Datas[];
   cartOpen: CartOpen;
   setCartOpen: Dispatch<SetStateAction<CartOpen>>;
