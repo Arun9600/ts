@@ -16,9 +16,10 @@ const App = () => {
         const apiURL = await fetch(`${BASE_URL}/products`);
         const response = await apiURL.json();
         setData(response);
+      } catch (error: any) {
+        setData(error);
+      } finally {
         setLoading(false);
-      } catch (error) {
-        console.log(error);
       }
     };
     apiFunc();
@@ -38,6 +39,7 @@ const App = () => {
           data={data}
           cartOpen={cartOpen}
           setCartOpen={setCartOpen}
+          loading={loading}
         />
       )}
     </>

@@ -6,17 +6,20 @@ import {
   Drawer,
   useTheme,
   useMediaQuery,
+  Skeleton,
 } from "@mui/material";
-import { CartOpen, Datas, IDNum } from "../utils";
+import { CartOpen, Datas, IDNum, Loading } from "../utils";
 import { useState } from "react";
 import ProductDetails from "./ProductsDetails";
 import { Dispatch, SetStateAction } from "react";
 import Cart from "./Cart";
 const ProductsList = ({
+  loading,
   data,
   cartOpen,
   setCartOpen,
 }: {
+  loading: Loading;
   data: Datas[];
   cartOpen: CartOpen;
   setCartOpen: Dispatch<SetStateAction<CartOpen>>;
@@ -83,6 +86,7 @@ const ProductsList = ({
                   height={250}
                   style={{ marginBottom: "15px" }}
                 />
+
                 <Box sx={{ marginBottom: "20px" }}>{datas.title}</Box>
                 <Grid container>
                   <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
